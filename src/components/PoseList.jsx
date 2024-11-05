@@ -1,13 +1,23 @@
 // Display a list of yoga poses
-import React from "react"
-import PoseCard from "./PoseCard"
+import React from "react";
+import PoseCard from "./PoseCard";
+import "./PoseList.css";
 
-const PoseList = ({poses, onDragStart}) => {
-    return (
-        <div>
-            {poses.map(pose => (<PoseCard key={pose.id} pose={pose} onDragStart={onDragStart} />))}
-        </div>
-    )
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+
+const PoseList = ({ poses }) => {
+  return (
+    <div className="column">
+      <SortableContext items={poses} strategy={verticalListSortingStrategy}>
+        {poses.map((pose) => (
+          <PoseCard id={pose.id} name={pose.name} key={pose.id} />
+        ))}
+      </SortableContext>
+    </div>
+  );
 };
 
 export default PoseList;
