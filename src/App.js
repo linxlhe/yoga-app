@@ -4,26 +4,21 @@ import { DndContext, closestCorners } from "@dnd-kit/core";
 import { poses } from "./data/poses";
 import PoseList from "./components/PoseList";
 import { arrayMove } from "@dnd-kit/sortable";
+import { Input } from "./components/Input";
 
 function App() {
-  const [availablePoses, setAvailablePoses] = useState(poses);
   const [sequence, setSequence] = useState(poses);
 
   const getPosePos = (id) =>
     sequence.findIndex((sequence) => sequence.id === id);
 
+  const addPose = (name) => {
+    setSequence(poses => [...poses, {id: poses.length+1, name }])
+  }
+
   const handleDragEnd = (event) => {
     const { active, over } = event;
     if (!over) return;
-
-    // case 1: drop from available poses to sequence
-    // if (availablePoses.find(pose => pose.id === active.id ) && over.id === "sequence-container") {
-
-    // }
-
-    // case 2: reorder within sequence
-    // if let go at the same position
-    // if (over.id === "sequence-container") {
     if (active.id === over.id) return;
     setSequence((sequence) => {
       const originalPos = getPosePos(active.id);
@@ -37,15 +32,8 @@ function App() {
       <div>
         <div>
           <h1>My Sequence</h1>
-
-          <div id="available-poses-container">
-            <PoseList poses={sequence}></PoseList>
-          </div>
-        </div>
-
-        <div>
-          <h1>My Available Poses</h1>
           <div id="sequence-container">
+            <Input onSubmit={addPose} />
             <PoseList poses={sequence}></PoseList>
           </div>
         </div>
