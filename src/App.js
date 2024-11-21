@@ -2,7 +2,7 @@ import "./App.css";
 import React, { useState } from "react";
 import { DndContext, closestCorners } from "@dnd-kit/core";
 import { initialPoses } from "./data/initialPoses";
-import PoseList from "./components/PoseList";
+import PoseList2 from "./components/PoseList2";
 import PoseList1 from "./components/PoseList1";
 import { arrayMove } from "@dnd-kit/sortable";
 import { Input } from "./components/Input";
@@ -56,7 +56,7 @@ function App() {
         <div>
           <h1>Postures</h1>
           <Input onSubmit={addPoseToPoseList} />
-          <PoseList poses={poses} />
+          <PoseList1 poses={poses} />
         </div>
       </DndContext>
 
@@ -67,7 +67,7 @@ function App() {
         <div>
           <h1>My Sequence</h1>
           <Input onSubmit={addPoseToSequence} />
-          <PoseList1 poses={sequence} />
+          <PoseList2 poses={sequence} />
         </div>
       </DndContext>
     </>
