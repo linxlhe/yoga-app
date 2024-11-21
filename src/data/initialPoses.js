@@ -1,6 +1,6 @@
 // create initial posese
 
-export const poses = [
+export const initialPoses = [
     {id: 1, name : "Mountain Pose"},
     {id: 2, name: "Forward Fold"},
     {id: 3, name: "Halfway lift"},
