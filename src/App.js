@@ -16,7 +16,9 @@ function App() {
     if (!over || active.id === over.id) return;
 
     setSequence((currentSequence) => {
-      const originalPos = currentSequence.findIndex((pose) => pose.id === active.id);
+      const originalPos = currentSequence.findIndex(
+        (pose) => pose.id === active.id
+      );
       const newPos = currentSequence.findIndex((pose) => pose.id === over.id);
       return arrayMove(currentSequence, originalPos, newPos);
     });
@@ -27,30 +29,26 @@ function App() {
     if (!over || active.id === over.id) return;
 
     setPoses((currentPoses) => {
-      const originalPos = currentPoses.findIndex((pose) => pose.id === active.id);
+      const originalPos = currentPoses.findIndex(
+        (pose) => pose.id === active.id
+      );
       const newPos = currentPoses.findIndex((pose) => pose.id === over.id);
       return arrayMove(currentPoses, originalPos, newPos);
     });
   };
 
   const addPoseToSequence = (name) => {
-    setSequence(prev => [...prev, { 
-      id: prev.length ? Math.max(...prev.map(p => p.id)) + 1 : 1, 
-      name 
-    }]);
+    setSequence(poses => [...poses, {id: poses.length+1, name }])
   };
 
   const addPoseToPoseList = (name) => {
-    setPoses(prev => [...prev, { 
-      id: prev.length ? Math.max(...prev.map(p => p.id)) + 1 : 1, 
-      name 
-    }]);
+    setPoses(poses => [...poses, {id: poses.length+1, name }])
   };
 
   return (
     <>
-      <DndContext 
-        onDragEnd={handleDragEndPoses} 
+      <DndContext
+        onDragEnd={handleDragEndPoses}
         collisionDetection={closestCorners}
       >
         <div>
@@ -60,8 +58,8 @@ function App() {
         </div>
       </DndContext>
 
-      <DndContext 
-        onDragEnd={handleDragEndSequence} 
+      <DndContext
+        onDragEnd={handleDragEndSequence}
         collisionDetection={closestCorners}
       >
         <div>
