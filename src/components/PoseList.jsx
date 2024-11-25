@@ -9,15 +9,18 @@ import {
 } from "@dnd-kit/sortable";
 import { useDroppable } from "@dnd-kit/core";
 
-const PoseList = ({ poses }) => {
-  // const {setNodeRef} = useDroppable({
-  //   id: 
-
-  // });
+const PoseList = ({ poses, id, container }) => {
+  const {setNodeRef} = useDroppable({
+    id: id,
+    data: {
+      type: container,
+      
+    }
+  });
 
 
   return (
-    <div className="column" onClick={onClick}>
+    <div className="column" ref={setNodeRef}>
       <SortableContext items={poses} strategy={verticalListSortingStrategy}>
         {poses.map((pose) => (
           <PoseCard id={pose.id} name={pose.name} key={pose.id} />
