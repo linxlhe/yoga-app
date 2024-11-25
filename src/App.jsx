@@ -103,8 +103,9 @@ function App() {
         
         
       }
-    } else if (overType === "s"){
-      // we are in sequence
+    } else {
+    // We're either dropping on sequence container or on an existing pose
+      // In both cases, if it's a template, we want to create a new pose
       if (dragItem.kind === "template") {
         const newPose = {
           kind: "instance",
@@ -123,45 +124,9 @@ function App() {
         setState((state) => arrayMove(state, dragIndex, dropIndex));
         
       }
-    } else {
-      console.log("something seems wrong");
     }
-   ``
-    // if (!dragItem || !dropItem) {
-    //   console.warn("How did this get undefined????");
-    //   return;
-    // }
+  }
 
-    // console.log(dragItem, dropItem);
-
-    // if (dragItem.kind === dropItem.kind) {
-    //   setState((state) => {
-    //     const dragIndex = state.findIndex(
-    //       ({ value: { id } }) => id === dragItem.value.id
-    //     );
-    //     const dropIndex = state.findIndex(
-    //       ({ value: { id } }) => id === dropItem.value.id
-    //     );
-
-    //     return arrayMove(state, dragIndex, dropIndex);
-    //   });
-    // } else if (dragItem.kind === "template" && over.id === "sequence") {
-    //   const newElement = {
-    //     kind: "instance",
-    //     value: {
-    //       id: getId(),
-    //       templateId: dragItem.value.id,
-    //       name: dragItem.value.name,
-    //     },
-    //   };
-
-    //   setState((state) => [...state, newElement]);
-    // } else {
-    //   setState((state) => {
-    //     return state.filter(({ value: { id } }) => id !== dragItem.value.id);
-    //   });
-    // }
-  };
 
   const addPoseToPoseList = (name) => {
     setState((state) => [
